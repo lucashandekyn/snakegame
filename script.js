@@ -1,11 +1,13 @@
 document.addEventListener('keydown', logKey);
 
-var speed = 1;
+var speed = 4;
 var x = 100;
+var a = 100-20;
+var b = 100;
 var y = 100;
 var dx = 0;
 var dy = 0;
-var bdy = 5;
+var bdy = 1;
 
 function logKey(e) {
   //console.log(e.code);
@@ -34,18 +36,27 @@ function logKey(e) {
 function updateSnake() { 
     x += dx * speed;
     y += dy * speed;   
-    const snake = [[x,y],[x-20,y],null];  
-    snake.pop();
-    snake.unshift([x+20,y]);
-    console.log
+    const snake = [[x,y],[a,b]];  
+    //snake.unshift([x,y]);
+    //snake.pop();    
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, 640, 640);
     ctx.beginPath();
     ctx.strokeStyle = "#FF0000";
-    ctx.arc( snake[0][0], snake[0][1], 10, 0, 2 * Math.PI);
-    ctx.arc( snake[2][0], snake[2][1], 10, 0, 2 * Math.PI);
+    for (i=0; i <= bdy; i++){
+        ctx.arc( snake[i][0], snake[i][1], 10, 0, 2 * Math.PI);
+    }
     ctx.stroke();
-      
+    if (dx==1){
+        a = x-20;
+    }else if(dx==-1){
+        a = x+20;
+    }else if(dy==1){
+        b = y-20;
+    }else if(dy==-1){
+        b = y+20;
+    }
+        
 }
 
 /*function draw() { 
