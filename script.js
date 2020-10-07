@@ -1,13 +1,13 @@
 document.addEventListener('keydown', logKey);
 
-var speed = 4;
+var speed = 3;
 var x = 100;
 var y = 100;
 var dx = 0;
 var dy = 0;
 
 function logKey(e) {
-  console.log(e.code);
+  //console.log(e.code);
   switch (e.key) {
     case "ArrowLeft":
         dx = -1;
@@ -28,16 +28,21 @@ function logKey(e) {
     }  
 }
 
+
+function updateSnake() { 
+    x += dx * speed;
+    y += dy * speed;        
+}
+
 function drawSnake(ctx) {
     ctx.beginPath();
     ctx.strokeStyle = "#FF0000";
     ctx.arc(x, y, 10, 0, 2 * Math.PI);
     ctx.stroke();
-}
-
-function updateSnake() { 
-    x += dx * speed;
-    y += dy * speed;    
+    ctx.beginPath();
+    ctx.strokeStyle = "#FF0000";
+    ctx.arc(x-20, y, 10, 0, 2 * Math.PI);
+    ctx.stroke();
 }
 
 function update() {
