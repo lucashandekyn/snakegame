@@ -7,9 +7,8 @@ var a = 0;
 var b = 0;
 var dx = 0;
 var dy = 0;
-var bdy = 1;
-const crd2 = [[x-20,y],null];
-const snake = [[x,y]]; 
+var bdy = 4;
+const snake = [null]; 
 
 function logKey(e) {
   //console.log(e.code);
@@ -34,15 +33,15 @@ function logKey(e) {
 }
 
 function crdSnake() {
+    var i = 0;
+    for ( i = bdy; i >= 0; i-- ) {
+        a = x - dx*i*20;
+        b = y - dy*i*20;
+        snake.unshift([a,b]);
+    }
     x += dx * speed;
     y += dy * speed;
-    crd2.unshift([a,b]);
-    crd2.pop();
-    snake.unshift(crd2[0]);
     snake.unshift([x,y]);
-    snake.pop();
-    a = x-dx*20;
-    b = y-dy*20;
 }
 
 function updateSnake() { 
