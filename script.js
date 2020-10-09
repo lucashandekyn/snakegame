@@ -8,7 +8,7 @@ var b = 0;
 var dx = 0;
 var dy = 0;
 var bdy = 5;
-const snake = [[100,100],null]; 
+const snake = [[100,100],[100,100],[100,100],[100,100],[100,100],[100,100]]; 
 
 function logKey(e) {
   //console.log(e.code);
@@ -33,22 +33,23 @@ function logKey(e) {
 }
 function lenghtsnake() {
     var a = snake.length;
-    for ( i = a; i <= bdy ; i++ ) {
-        snake.shift(null);
+    if ( a < bdy) {
+        for ( i = a; i <= bdy ; i++ ) {
+            snake.shift([snake[a-1][0]+dx*20,snake[a-1][1]+dy*20]);
+        }
     }
 }
 
 function crdSnake() {
-    if (snake.length <= bdy ) {
-        lenghtsnake();
-    }
+    //lenghtsnake();
     snake.unshift([snake[0][0]+dx*20,snake[0][1]+dy*20]);
-    if (snake.length <= bdy-1) {
+    /*if (snake.length <= bdy-1) {
         //do nothing
     }
     else {
         snake.pop();
-    }
+    }*/
+    snake.pop();
 }
 
 function drawSnake() {
