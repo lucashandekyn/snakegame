@@ -3,10 +3,12 @@ document.addEventListener('keydown', logKey);
 var speed = 4;
 var x = 100;
 var y = 100;
+var a = 0;
+var b = 0;
 var dx = 0;
 var dy = 0;
 var bdy = 1;
-const crd2 = [[80,100],null];
+const crd2 = [[x-20,y],null];
 const snake = [[x,y]]; 
 
 function logKey(e) {
@@ -32,17 +34,19 @@ function logKey(e) {
 }
 
 function crdSnake() {
-
-}
-
-function updateSnake() { 
+    a = x-dx*20;
+    b = y-dy*20;
     x += dx * speed;
-    y += dy * speed;   
-    crd2.unshift([x-20,y]);
+    y += dy * speed;
+    crd2.unshift([a,b]);
     crd2.pop();
     snake.unshift(crd2[0]);
     snake.unshift([x,y]);
     snake.pop();
+}
+
+function updateSnake() { 
+    crdSnake(); 
     drawSnake();
 }
 
