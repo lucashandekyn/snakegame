@@ -34,8 +34,6 @@ function logKey(e) {
 }
 
 function crdSnake() {
-    a = x-dx*20;
-    b = y-dy*20;
     x += dx * speed;
     y += dy * speed;
     crd2.unshift([a,b]);
@@ -43,6 +41,8 @@ function crdSnake() {
     snake.unshift(crd2[0]);
     snake.unshift([x,y]);
     snake.pop();
+    a = x-dx*20;
+    b = y-dy*20;
 }
 
 function updateSnake() { 
