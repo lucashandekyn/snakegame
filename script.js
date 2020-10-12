@@ -1,13 +1,12 @@
 document.addEventListener('keydown', logKey);
 
-var speed = 4;
-var x = 100;
-var y = 100;
-var a = 0;
-var b = 0;
+var speed = 5;
+var crdxf = 0;
+var crdyf = 0;
+const food = [null];
 var dx = 0;
 var dy = 0;
-var bdy = 3;
+var bdy = 7;
 const snake = [[100,100],[100,100]]; 
 
 function logKey(e) {
@@ -31,12 +30,28 @@ function logKey(e) {
         break;
     }  
 }
+
+function crdFood() {
+    crdxf = Math.floor(Math.random() * 640) + 1;
+    crdyf = Math.floor(Math.random() * 640) + 1;
+    food.unshift([crdxf,crdyf]);
+    food.pop();
+}
+
+function drawFood() {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 640, 640); 
+    ctx.fillStyle = "00FF00";
+    ctx.beginPath();
+    ctx.arc( crdxf, crdyf, 10, 0, 2 * Math.PI);
+    ctx.fill();
+}
+
 function lenghtsnake() {
     var l = snake.length;
     if (l==bdy){
         snake.pop();
     }
-    console.log(l);
 }
 
 function crdSnake() {
@@ -56,9 +71,12 @@ function drawSnake() {
 }
 
 function updateSnake() { 
-    lenghtsnake();
     crdSnake(); 
     drawSnake();
+}
+
+function updateFood() {
+    drawFood();
 }
 
 function update() {
@@ -69,4 +87,4 @@ function run() {
     update();
 }
 
-setInterval(run, 1000 / 3)
+setInterval(run, 1000 / speed)
