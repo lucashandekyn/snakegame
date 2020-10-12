@@ -7,7 +7,7 @@ var a = 0;
 var b = 0;
 var dx = 0;
 var dy = 0;
-var bdy = 5;
+var bdy = 3;
 const snake = [[100,100],[100,100],[100,100],[100,100],[100,100],[100,100]]; 
 
 function logKey(e) {
@@ -54,13 +54,13 @@ function crdSnake() {
 
 function drawSnake() {
     const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 640, 640);
-    ctx.beginPath();
+    ctx.clearRect(0, 0, 640, 640);  
     ctx.fillStyle = "#FF0000";
     for (i=0; i <= bdy; i++){
+        ctx.beginPath();
         ctx.arc( snake[i][0], snake[i][1], 10, 0, 2 * Math.PI);
+        ctx.fill();
     }
-    ctx.fill();
 }
 
 function updateSnake() { 
