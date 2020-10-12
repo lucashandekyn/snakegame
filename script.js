@@ -8,14 +8,14 @@ var b = 0;
 var dx = 0;
 var dy = 0;
 var bdy = 3;
-const snake = [[100,100],[100,100],[100,100],[100,100],[100,100],[100,100]]; 
+const snake = [[100,100],[100,100]]; 
 
 function logKey(e) {
   //console.log(e.code);
   switch (e.key) {
     case "ArrowLeft":
         dx = -1;
-        dy = 0;
+        dy = 0; 
         break;
     case "ArrowRight":
         dx = +1;
@@ -32,31 +32,23 @@ function logKey(e) {
     }  
 }
 function lenghtsnake() {
-    var a = snake.length;
-    if ( a < bdy) {
-        for ( i = a; i <= bdy ; i++ ) {
-            snake.shift([snake[a-1][0]+dx*20,snake[a-1][1]+dy*20]);
-        }
+    var l = snake.length;
+    if (l==bdy){
+        snake.pop();
     }
+    console.log(l);
 }
 
 function crdSnake() {
-    //lenghtsnake();
+    lenghtsnake();
     snake.unshift([snake[0][0]+dx*20,snake[0][1]+dy*20]);
-    /*if (snake.length <= bdy-1) {
-        //do nothing
-    }
-    else {
-        snake.pop();
-    }*/
-    snake.pop();
 }
 
 function drawSnake() {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, 640, 640);  
     ctx.fillStyle = "#FF0000";
-    for (i=0; i <= bdy; i++){
+    for (i=0; i <= snake.length-1; i++){
         ctx.beginPath();
         ctx.arc( snake[i][0], snake[i][1], 10, 0, 2 * Math.PI);
         ctx.fill();
@@ -64,6 +56,7 @@ function drawSnake() {
 }
 
 function updateSnake() { 
+    lenghtsnake();
     crdSnake(); 
     drawSnake();
 }
@@ -77,13 +70,3 @@ function run() {
 }
 
 setInterval(run, 1000 / 3)
-
-/*var i = 0;
-    for ( i = bdy; i >= 0; i-- ) {
-        a = x - dx*i*20;
-        b = y - dy*i*20;
-        snake.unshift([a,b]);
-    }
-    x += dx * speed;
-    y += dy * speed;
-    snake.unshift([x,y]);*/
