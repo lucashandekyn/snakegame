@@ -1,2 +1,2 @@
 # Snake game
-This is an exercise for javascript
+This is a challenge to practice javascript
