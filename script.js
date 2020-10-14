@@ -8,7 +8,7 @@ var dx = 0;
 var dy = 0;
 var bdy = 7;
 const snake = [[100,100],[100,100]]; 
-
+//test
 function logKey(e) {
   //console.log(e.code);
   switch (e.key) {
