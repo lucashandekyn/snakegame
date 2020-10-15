@@ -1,13 +1,14 @@
 document.addEventListener('keydown', logKey);
 
+var count = 0;
 var speed = 5;
 var crdxf = 265;
 var crdyf = 387;
 const food = [null];
 var dx = 0;
 var dy = 0;
-var bdy = 2;
-Boolean eaten = false;
+var bdy = 3;
+var eaten = false;
 const snake = [[100,100],[100,100]]; 
 
 function logKey(e) {
@@ -32,13 +33,19 @@ function logKey(e) {
 }
 
 function score() {
+    if (0<=snake[0]-food[0]<=[20,20]||0>=snake[0]-food[0]>=[-20,-20]) {
+        eaten = true;
+    }
     switch(eaten) {
         case true:
             body += 1;
             crdFood();
-            break
+            break;
         case false:
-
+            if (count == 0) {
+                crdFood();
+            }
+            break;
     }
 }
 
@@ -51,7 +58,7 @@ function crdFood() {
 
 function drawFood() {
     const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 640, 640); 
+    //ctx.clearRect(0, 0, 640, 640); 
     ctx.fillStyle = "00FF00";
     ctx.beginPath();
     ctx.arc( food[0][0], food[0][1], 10, 0, 2 * Math.PI);
@@ -73,12 +80,18 @@ function crdSnake() {
 function drawSnake() {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, 640, 640);  
-    ctx.fillStyle = "#FF0000";
+    //ctx.fillStyle = "#FF0000";
     for (i=0; i <= snake.length-1; i++){
+        ctx.fillStyle = "#FF0000";
         ctx.beginPath();
         ctx.arc( snake[i][0], snake[i][1], 10, 0, 2 * Math.PI);
         ctx.fill();
     }
+}
+
+function drawGame() {
+    drawFood();
+    drawSnake();
 }
 
 function updateSnake() { 
@@ -98,6 +111,7 @@ function update() {
 
 function run() {
     update();
+    count+=1;
 }
 
 setInterval(run, 1000 / speed)
