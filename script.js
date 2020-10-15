@@ -33,7 +33,7 @@ function logKey(e) {
 }
 
 function score() {
-    if (0<=snake[0]-food[0]<=[20,20]||0>=snake[0]-food[0]>=[-20,-20]) {
+    if ([-20,-20]<=snake[0]-food[0]<=[20,20]) {
         eaten = true;
     }
     switch(eaten) {
@@ -58,8 +58,7 @@ function crdFood() {
 
 function drawFood() {
     const ctx = canvas.getContext("2d");
-    //ctx.clearRect(0, 0, 640, 640); 
-    ctx.fillStyle = "00FF00";
+    ctx.fillStyle = "#00FF00";
     ctx.beginPath();
     ctx.arc( food[0][0], food[0][1], 10, 0, 2 * Math.PI);
     ctx.fill();
@@ -80,7 +79,6 @@ function crdSnake() {
 function drawSnake() {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, 640, 640);  
-    //ctx.fillStyle = "#FF0000";
     for (i=0; i <= snake.length-1; i++){
         ctx.fillStyle = "#FF0000";
         ctx.beginPath();
