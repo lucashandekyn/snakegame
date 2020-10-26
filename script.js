@@ -31,7 +31,7 @@ function logKey(e) {
         break;
     }  
 }
-//test
+
 function score() {
     if ([-20,-20]<=snake[0]-food[0]<=[20,20]) {
         eaten = true;
