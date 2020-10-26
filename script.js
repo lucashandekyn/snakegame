@@ -10,7 +10,7 @@ var dy = 0;
 var bdy = 3;
 var eaten = false;
 const snake = [[100,100],[100,100]]; 
-
+//test
 function logKey(e) {
   switch (e.key) {
     case "ArrowLeft":
