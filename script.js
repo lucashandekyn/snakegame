@@ -48,7 +48,7 @@ function score() {
             break;
     }
 }
-
+//test
 function crdFood() {
     crdxf = Math.floor(Math.random() * 640) + 20;
     crdyf = Math.floor(Math.random() * 640) + 20;
