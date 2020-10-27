@@ -31,7 +31,7 @@ function logKey(e) {
         break;
     }  
 }
-
+//test
 function score() {
     if ([-20,-20]<=snake[0]-food[0]<=[20,20]) {
         eaten = true;
@@ -48,7 +48,7 @@ function score() {
             break;
     }
 }
-
+//test
 function crdFood() {
     crdxf = Math.floor(Math.random() * 640) + 20;
     crdyf = Math.floor(Math.random() * 640) + 20;
