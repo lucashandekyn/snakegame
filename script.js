@@ -107,8 +107,9 @@ function updateFood() {
 }*/
 
 function update() {
-    updateSnake();
-    updateFood();
+    //updateSnake();
+    //updateFood();
+    Matrix();
 }
 
 function run() {
