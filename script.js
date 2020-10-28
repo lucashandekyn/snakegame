@@ -11,7 +11,7 @@ var bdy = 3;
 var eaten = false;
 const snake = [[100,100],[100,100]]; 
 
-/*(function logKey(e) {
+function logKey(e) {
   switch (e.key) {
     case "ArrowLeft":
         dx = -1;
@@ -32,7 +32,7 @@ const snake = [[100,100],[100,100]];
     }  
 }
 
-function score() {
+/*function score() {
     if ([-20,-20]<=snake[0]-food[0]<=[20,20]) {
         eaten = true;
     }
@@ -87,14 +87,11 @@ function drawSnake() {
     }
 }*/
 
-function drawMatrix() {
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "rgb(0,250,0)";
-    ctx.beginPath();
-    ctx.
+function Matrix() {
+    
 }
 
-function drawGame() {
+/*function drawGame() {
     drawFood();
     drawSnake();
 }
@@ -107,7 +104,7 @@ function updateSnake() {
 function updateFood() {
     score();
     drawFood();
-}
+}*/
 
 function update() {
     updateSnake();
