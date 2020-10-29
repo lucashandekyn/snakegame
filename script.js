@@ -30,6 +30,7 @@ function logKey(e) {
         dx = 0;
         break;
     }  
+    //console.log(e.key);
 }
 
 /*function score() {
