@@ -10,6 +10,11 @@ var dy = 0;
 var bdy = 3;
 var eaten = false;
 const snake = [[100,100],[100,100]]; 
+const crdx = [0];
+const crdy = [0];
+var mtrxlngth = 32;
+const matrixx = [[1]];
+const matrixy = [[1]];
 
 function logKey(e) {
   switch (e.key) {
@@ -33,7 +38,7 @@ function logKey(e) {
     //console.log(e.key);
 }
 
-/*function score() {
+function score() {
     if ([-20,-20]<=snake[0]-food[0]<=[20,20]) {
         eaten = true;
     }
@@ -50,7 +55,7 @@ function logKey(e) {
     }
 }
 
-function crdFood() {
+/*function crdFood() {
     crdxf = Math.floor(Math.random() * 640) + 20;
     crdyf = Math.floor(Math.random() * 640) + 20;
     food.unshift([crdxf,crdyf]);
@@ -65,52 +70,65 @@ function drawFood() {
     ctx.fill();
 }
 
-function lenghtsnake() {
+/*function lenghtsnake() {
     var l = snake.length;
     if (l==bdy){
         snake.pop();
     }
-}
+}*/
 
 function crdSnake() {
-    lenghtsnake();
-    snake.unshift([snake[0][0]+dx*20,snake[0][1]+dy*20]);
+    for (i=0;i<=crdx.length;i++) {
+        crdx.push( [crdx[i]+ dx]);
+        crdx.shift();
+        crdy.push([crdy[i] + dy]);
+        crdy.shift();
+    }
 }
 
 function drawSnake() {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, 640, 640);  
-    for (i=0; i <= snake.length-1; i++){
+    //for (i=0; i <= snake.length-1; i++){
         ctx.fillStyle = "#FF0000";
         ctx.beginPath();
-        ctx.arc( snake[i][0], snake[i][1], 10, 0, 2 * Math.PI);
+        ctx.arc( matrixx[crdx[0]]*20, matrixy[crdy[0]]*20, 10, 0, 2 * Math.PI);
         ctx.fill();
-    }
-}*/
+    //}
+}
 
-function Matrix() {
-    
+function createMatrix() {
+    for (i=2; i<=mtrxlngth; i++) {
+        if (matrixx.length < 32) {
+            matrixx.push([i]);
+        }
+    }
+    for (i=2; i<=mtrxlngth; i++) {
+        if (matrixy.length < 32) {
+            matrixy.push([i]);
+        }
+    }
 }
 
 /*function drawGame() {
     drawFood();
     drawSnake();
-}
+}*/
 
 function updateSnake() { 
-    crdSnake(); 
+    //crdSnake(); 
     drawSnake();
 }
 
-function updateFood() {
+/*function updateFood() {
     score();
     drawFood();
 }*/
 
 function update() {
-    //updateSnake();
+    updateSnake();
     //updateFood();
-    Matrix();
+    createMatrix();
 }
 
 function run() {
