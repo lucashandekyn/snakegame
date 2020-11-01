@@ -84,7 +84,6 @@ function crdSnake() {
         crdx.pop();
         crdy.pop();
     }
-    console.log(crdx);
 }
 
 function drawSnake() {
