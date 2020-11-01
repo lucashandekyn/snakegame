@@ -53,10 +53,22 @@ function score() {
 
 
 function createMatrix() {
-    for (i=2; i<=matrix.length; i++) {
-        if (matrix.length < 32) {
-            matrix.push([i]);
-        }
+    switch (dx , dy) {
+        case -1 , 0:
+            console.log("left");
+            break;
+        case 1 , 0:
+            console.log("right");
+            break;
+        case 0 , 1:
+            console.log("down");
+            break;
+        case 0 , -1:
+            console.log("up");
+            break;
+        default:
+            console.log("right");
+            break;
     }
 }
 
