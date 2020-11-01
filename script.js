@@ -78,12 +78,13 @@ function drawFood() {
 }*/
 
 function crdSnake() {
-    for (i=0;i<=crdx.length;i++) {
-        crdx.push( [crdx[i]+ dx]);
-        crdx.shift();
-        crdy.push([crdy[i] + dy]);
-        crdy.shift();
+    crdx.unshift( [crdx[0]+ dx] );
+    crdy.unshift( [crdy[0] + dy] );
+    if (crdx.lenght >= bdy) {
+        crdx.pop();
+        crdy.pop();
     }
+    console.log(crdx);
 }
 
 function drawSnake() {
@@ -92,7 +93,7 @@ function drawSnake() {
     //for (i=0; i <= snake.length-1; i++){
         ctx.fillStyle = "#FF0000";
         ctx.beginPath();
-        ctx.arc( matrixx[crdx[0]]*20, matrixy[crdy[0]]*20, 10, 0, 2 * Math.PI);
+        ctx.arc( crdx[0]*20, crdy[0]*20, 10, 0, 2 * Math.PI);
         ctx.fill();
     //}
 }
@@ -116,7 +117,7 @@ function createMatrix() {
 }*/
 
 function updateSnake() { 
-    //crdSnake(); 
+    crdSnake(); 
     drawSnake();
 }
 
