@@ -52,7 +52,7 @@ function score() {
 }
 
 
-function createMatrix() {
+/*function createMatrix() {
     switch (dx , dy) {
         case -1 , 0:
             console.log("left");
@@ -70,7 +70,7 @@ function createMatrix() {
             console.log("right");
             break;
     }
-}
+}*/
 
 
 function updateSnake() { 
@@ -86,7 +86,7 @@ function updateSnake() {
 function update() {
     updateSnake();
     //updateFood();
-    createMatrix();
+    //createMatrix();
 }
 
 function run() {
