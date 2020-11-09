@@ -1,16 +1,15 @@
 document.addEventListener('keydown', logKey);
 
 var count = 0;
-var speed = 5;
-var crdxf = 265;
-var crdyf = 387;
-const food = [null];
+var speed = 2;
+
+var world = Array.from(Array(32), () => Array.from(Array(32), () => 0));
+
 var dx = 0;
 var dy = 0;
-var bdy = 3;
-var eaten = false;
-const snake = [[100,100],[100,100]]; 
-const matrix = [[[20],[20],[false]],[[20],[20],[false]]];
+
+var px = 1;
+var py = 1;
 
 function logKey(e) {
   switch (e.key) {
@@ -34,59 +33,37 @@ function logKey(e) {
     //console.log(e.key);
 }
 
-function score() {
-    if ([-20,-20]<=snake[0]-food[0]<=[20,20]) {
-        eaten = true;
-    }
-    switch(eaten) {
-        case true:
-            body += 1;
-            crdFood();
-            break;
-        case false:
-            if (count == 0) {
-                crdFood();
-            }
-            break;
+
+COLORS = { 0: "black", 1: "red", 2: "green" };
+
+function drawWorld() {
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 640, 640);  
+    for (i=0; i < 32; i++){
+        for (j=0; j < 32; j++){            
+            ctx.fillStyle = COLORS[world[i][j]];
+            ctx.fillRect(i*20, j*20, 20, 20);
+        }
     }
 }
-
-
-/*function createMatrix() {
-    switch (dx , dy) {
-        case -1 , 0:
-            console.log("left");
-            break;
-        case 1 , 0:
-            console.log("right");
-            break;
-        case 0 , 1:
-            console.log("down");
-            break;
-        case 0 , -1:
-            console.log("up");
-            break;
-        default:
-            console.log("right");
-            break;
-    }
-}*/
-
 
 function updateSnake() { 
-    //crdSnake(); 
-    //drawSnake();
+    world[px][py] = 0;
+    px += dx;
+    py += dy;
+    world[px][py] = 1;
 }
 
-/*function updateFood() {
-    score();
-    drawFood();
-}*/
+function updateFood() {
+    world[9][9] = 2;
+}
 
 function update() {
+    updateFood();
     updateSnake();
-    //updateFood();
+
     //createMatrix();
+    drawWorld();
 }
 
 function run() {
