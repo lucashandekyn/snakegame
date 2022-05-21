@@ -1,6 +1,6 @@
 document.addEventListener('keydown', logKey);
 
-var count = 27;
+var count = 5;
 
 
 var speed = 5;
@@ -65,16 +65,39 @@ function updateSnake() {
 }
 
 function gameOver() {
+    if (px < 0 || py < 0) {
+        return false;
+    }
+    for (i = 0; i < snake.length - 1; i++) {
+        if ([px, py] == snake[i]) {
+            console.log("verloren")
+            return false;
+        }
+        else {
+            console.log([px, py], snake[i])
+            return true;
+        }
+    }
+}
 
+
+
+function reset() {
+    dx = 0;
+    dy = 0;
+    px = 1;
+    py = 1;
+    count = 3;
+    snake = [[1, 1], [px, py]];
 }
 
 function update() {
     updateSnake();
     draw(snake, food);
+    if (!(gameOver())) {
+        reset()
+    }
 }
 
-function run() {
-    update();
-}
 
-setInterval(run, 1000 / speed)
+setInterval(update, 1000 / speed)
