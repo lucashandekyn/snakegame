@@ -70,16 +70,19 @@ function gameOver() {
     }
     for (i = 0; i < snake.length - 1; i++) {
         if ([px, py] == snake[i]) {
-            console.log("verloren")
             return false;
         }
         else {
-            console.log([px, py], snake[i])
             return true;
         }
     }
 }
 
+function eet() {
+    if (px == food[0] && py == food[y]) {
+        count += 1
+    }
+}
 
 
 function reset() {
@@ -94,6 +97,7 @@ function reset() {
 function update() {
     updateSnake();
     draw(snake, food);
+    eet()
     if (!(gameOver())) {
         reset()
     }
