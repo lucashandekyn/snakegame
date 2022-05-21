@@ -34,7 +34,6 @@ function logKey(e) {
             dy = +1;
             break;
     }
-    //console.log(e.key);
 }
 
 
@@ -79,7 +78,7 @@ function gameOver() {
 }
 
 function eet() {
-    if (px == food[0] && py == food[y]) {
+    if (px == food[0] && py == food[1]) {
         count += 1
     }
 }
