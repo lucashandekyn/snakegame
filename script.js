@@ -64,8 +64,11 @@ function updateSnake() {
 }
 
 function inbody() {
-    for (i = 0; i < snake.length() - 1; i++) {
-        if (JSON.stringify(snake[i]) == JSON.stringify([px, py])) {
+    for (i = 0; i < snake.length - 1; i++) {
+        pxs = snake[i][0];
+        pys = snake[i][1];
+        console.log(pxs, pys, px, py)
+        if (px == pxs && py == pys) {
             return true;
         }
         else {
@@ -75,8 +78,6 @@ function inbody() {
 }
 
 function gameOver() {
-    var snakebody = [...snake];
-    snakebody.pop();
     if (px < 0 || py < 0 || px > 31 || py > 31) {
         return true;
     }
