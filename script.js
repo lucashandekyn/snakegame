@@ -45,12 +45,12 @@ function draw(array1, array2) {
     ctx.rect(0, 0, 640, 640)
     ctx.fillStyle = COLORS[0];
     ctx.fill();
+    ctx.fillStyle = COLORS[2];
+    ctx.fillRect(array2[0] * 20, array2[1] * 20, 20, 20);
     for (i = 0; i < array1.length; i++) {
         ctx.fillStyle = COLORS[1];
         ctx.fillRect(array1[i][0] * 20, array1[i][1] * 20, 20, 20);
     }
-    ctx.fillStyle = COLORS[2];
-    ctx.fillRect(array2[0] * 20, array2[1] * 20, 20, 20);
 }
 
 
@@ -64,22 +64,25 @@ function updateSnake() {
 }
 
 function gameOver() {
-    if (px < 0 || py < 0) {
-        return false;
+    if (px < 0 || py < 0 || px > 31 || py > 31) {
+        return true;
     }
-    for (i = 0; i < snake.length - 1; i++) {
-        if ([px, py] == snake[i]) {
-            return false;
-        }
-        else {
-            return true;
-        }
+    else if (snake.includes([px, py], -2)) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
-function eet() {
+function eat() {
     if (px == food[0] && py == food[1]) {
-        count += 1
+        count += 1;
+        food.shift();
+        food.shift();
+        food.push(Math.floor(Math.random() * 32));
+        food.push(Math.floor(Math.random() * 32));
+        console.log(food);
     }
 }
 
@@ -91,13 +94,14 @@ function reset() {
     py = 1;
     count = 3;
     snake = [[1, 1], [px, py]];
+    food = [Math.floor(Math.random() * 32), Math.floor(Math.random() * 32)]
 }
 
 function update() {
     updateSnake();
     draw(snake, food);
-    eet()
-    if (!(gameOver())) {
+    eat()
+    if (gameOver()) {
         reset()
     }
 }
