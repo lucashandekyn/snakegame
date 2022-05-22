@@ -63,11 +63,24 @@ function updateSnake() {
     snake.push([px, py]);
 }
 
+function inbody() {
+    for (i = 0; i < snake.length() - 1; i++) {
+        if (JSON.stringify(snake[i]) == JSON.stringify([px, py])) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
 function gameOver() {
+    var snakebody = [...snake];
+    snakebody.pop();
     if (px < 0 || py < 0 || px > 31 || py > 31) {
         return true;
     }
-    else if (snake.includes([px, py], -1)) {
+    if (inbody()) {
         return true;
     }
     else {
@@ -82,7 +95,6 @@ function eat() {
         food.shift();
         food.push(Math.floor(Math.random() * 32));
         food.push(Math.floor(Math.random() * 32));
-        console.log(food);
     }
 }
 
