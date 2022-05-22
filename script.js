@@ -13,7 +13,7 @@ var dy = 0;
 
 var px = 1;
 var py = 1;
-var snake = [[1, 1], [px, py]];
+var snake = [[px, py]];
 
 function logKey(e) {
     switch (e.key) {
@@ -67,7 +67,7 @@ function gameOver() {
     if (px < 0 || py < 0 || px > 31 || py > 31) {
         return true;
     }
-    else if (snake.includes([px, py], -2)) {
+    else if (snake.includes([px, py], -1)) {
         return true;
     }
     else {
@@ -93,7 +93,7 @@ function reset() {
     px = 1;
     py = 1;
     count = 3;
-    snake = [[1, 1], [px, py]];
+    snake = [[px, py]];
     food = [Math.floor(Math.random() * 32), Math.floor(Math.random() * 32)]
 }
 
