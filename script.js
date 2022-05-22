@@ -5,7 +5,6 @@ var count = 5;
 
 var speed = 5;
 
-
 var food = [9, 9];
 
 var dx = 0;
@@ -60,7 +59,6 @@ function updateSnake() {
     if (snake.length >= count) {
         snake.shift()
     }
-    snake.push([px, py]);
 }
 
 function inbody() {
