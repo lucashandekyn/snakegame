@@ -1,12 +1,12 @@
 document.addEventListener('keydown', logKey);
 
-var count = 5;
+var count = 2;
 
 var speed = 5;
 
 var food = [9, 9];
 
-var dx = 0;
+var dx = 1;
 var dy = 0;
 
 var px = 1;
@@ -65,13 +65,10 @@ function inbody() {
     for (i = 0; i < snake.length - 1; i++) {
         pxs = snake[i][0];
         pys = snake[i][1];
-        console.log(pxs, pys, px, py)
         if (px == pxs && py == pys) {
             return true;
         }
-        else {
-            return false;
-        }
+    return false;
     }
 }
 
@@ -79,7 +76,7 @@ function gameOver() {
     if (px < 0 || py < 0 || px > 31 || py > 31) {
         return true;
     }
-    if (inbody()) {
+    if (inbody() && (px != 1 && py != 1)) {
         return true;
     }
     else {
